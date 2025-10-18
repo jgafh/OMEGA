@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OMEGA Solutions — Software a Medida, Cloud & IA</title>
+<meta name="description" content="OMEGA Solutions: desarrollo de software a medida, soluciones cloud/SaaS e IA. Más eficiencia, más control, más crecimiento." />
+<link rel="icon" href="OMEGA Icon.png" />
+
+<style>
+  :root{
+    --brand-1:#223457;   /* Azul OMEGA */
+    --brand-2:#a1a9b4;   /* Gris OMEGA */
+    --brand-3:#ffffff;   /* Blanco */
+    --ink:#EAF2FF;       /* Texto sobre oscuro */
+    --ink-2:#cdd6e3;     /* Texto secundario */
+    --maxw:1200px;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+    --shadow-soft:0 6px 22px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,#0b1626 0%, #11203a 100%);
+    color:var(--ink);
+    font-family:"Liberation Sans","Helvetica Neue",Helvetica,Arial,ui-sans-serif,system-ui,"Segoe UI",Roboto,"Noto Sans",sans-serif;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  img{max-width:100%;display:block}
+  .container{width:min(100%,var(--maxw));margin:0 auto;padding:0 24px}
+  section{padding:72px 0}
+  h1,h2,h3,h4{margin:0 0 10px}
+  p{margin:0 0 16px}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(34,52,87,.97);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(6px);
+  }
+  .nav{height:66px;display:flex;align-items:center;justify-content:space-between;padding:10px 24px}
+  .brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
+  .brand img{height:46px;width:auto;object-fit:contain}
+  .hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:2px solid #ffffff55;background:transparent;color:#fff;cursor:pointer;margin-right:10px}
+  .hamburger:hover{background:#ffffff18}
+  .top-actions{display:flex;align-items:center;gap:10px}
+  .cta-nav{display:inline-flex;align-items:center;gap:8px;background:var(--brand-3);color:var(--brand-1);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
+
+  /* Language dropdown (ES/EN) */
+  .lang{position:relative}
+  .lang-btn{
+    display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 14px;
+    border-radius:999px;border:1px solid #ffffff45;background:transparent;color:#fff;
+    font-weight:800;cursor:pointer
+  }
+  .lang-btn:hover{background:#ffffff18}
+  .lang-btn img{width:18px;height:18px;filter:brightness(100%);opacity:.95}
+  .lang-menu{
+    position:absolute;right:0;top:calc(100% + 8px);min-width:120px;padding:8px;
+    background:rgba(34,52,87,.97);border:1px solid #ffffff22;border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(8px);
+    opacity:0;transform:translateY(-4px);pointer-events:none;transition:.18s ease;z-index:120
+  }
+  .lang.open .lang-menu{opacity:1;transform:translateY(0);pointer-events:auto}
+  .lang-menu button{
+    width:100%;text-align:left;padding:10px 12px;border:0;background:transparent;
+    color:#EAF2FF;border-radius:10px;font-weight:700;cursor:pointer
+  }
+  .lang-menu button:hover{background:#ffffff14}
+
+  /* Drawer */
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.2s;z-index:70}
+  .drawer{
+    position:fixed;inset:0 auto 0 0;width:min(86vw,360px);
+    background:rgba(34,52,87,.95);backdrop-filter:blur(10px);color:#EAF2FF;
+    transform:translateX(-100%);transition:.25s ease;z-index:80;
+    box-shadow:0 10px 40px rgba(0,0,0,.3)
+  }
+  .drawer.open{transform:translateX(0)}
+  .drawer-backdrop.open{opacity:1;pointer-events:auto}
+  .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #ffffff22}
+  .drawer-close{background:transparent;border:0;color:#EAF2FF;font-size:26px;cursor:pointer}
+  .drawer-nav{padding:12px 18px;display:flex;flex-direction:column;gap:6px}
+  .drawer-nav a{color:#EAF2FF;text-decoration:none;padding:10px 8px;border-radius:10px}
+  .drawer-nav a:hover{background:#ffffff14}
+  .drawer-social{padding:14px 18px;border-top:1px solid #ffffff22;margin-top:8px}
+  .drawer-social .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .drawer-social a.icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid #ffffff33;color:#fff;text-decoration:none}
+  .drawer-social a.icon:hover{background:#ffffff12}
+  .drawer-social .phone{display:flex;align-items:center;gap:8px;margin-top:10px;color:#fff;text-decoration:none}
+
+  /* HERO — imagen anclada a la derecha, responsiva */
+  .hero{
+    position:relative; isolation:isolate; overflow:hidden;
+    min-height: clamp(560px, 92vh, 820px);
+    display:flex; align-items:center; color:#fff;
+    background:
+      linear-gradient(90deg, rgba(15,27,44,.10) 20%, rgba(15,27,44,.65) 38%, rgba(15,27,44,.35) 60%, rgba(15,27,44,.10) 85%),
+      url('OMEGA Heroo.svg') no-repeat;
+    background-size: cover;
+    /* Foco a la derecha para que el logo “C” siempre quede visible sin moverse demasiado */
+    background-position: 80% center;
+  }
+  /* Ajuste de foco por breakpoints para que no “salte” en móvil */
+  @media (max-width:1100px){ .hero{ background-position: 78% center; } }
+  @media (max-width:900px){  .hero{ background-position: 75% center; } }
+  @media (max-width:640px){  .hero{ background-position: 70% center; } }
+
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  @media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
+  .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 12px}
+  .accent{color:var(--brand-2)}
+  .hero p.lead{font-size:clamp(16px,2.2vw,18px);color:#e5ebf5;margin:0 0 22px}
+  .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{display:inline-block;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 14px;font-weight:600}
+  .statbar{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  
+    /* Halo de legibilidad para títulos y párrafos en el hero */
+  .text-halo{
+    text-shadow:
+      0 0 1px rgba(0,0,0,.50),
+      0 0 6px rgba(0,0,0,.35),
+      0 2px 10px rgba(0,0,0,.30);
+  }
+  .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 12px}
+  .hero p.lead{font-size:clamp(16px,2.2vw,18px);color:#e5ebf5;margin:0 0 22px}
+  .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{display:inline-block;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 14px;font-weight:600}
+  .statbar{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* Section base */
+  .section-title{font-size:clamp(22px,3vw,34px);margin:0 0 6px}
+  .section-sub{color:var(--ink-2);margin:0 0 28px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media (max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+  .card{background:#16284a;color:var(--ink);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow-soft);padding:22px}
+  .card h4{margin:4px 0 6px;font-size:18px}
+
+  /* KPIs */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{background:#13233f;color:var(--ink);border:1px dashed rgba(161,169,180,.45);border-radius:14px;padding:18px;text-align:center}
+  .kpi b{display:block;font-size:28px;color:var(--brand-2)}
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  /* INSIGHTS (light) */
+  .light-section{background:var(--brand-3);color:var(--brand-1)}
+  .light-section .section-title{color:var(--brand-1)}
+  .light-section .section-sub{color:#465a77}
+  .insights{display:grid;grid-template-columns:280px 1fr 1fr 1fr;gap:22px;align-items:start}
+  @media (max-width:1100px){.insights{grid-template-columns:1fr 1fr}}
+  @media (max-width:640px){.insights{grid-template-columns:1fr}}
+  .insight-card{background:#fff;border:1px solid #e6eef7;border-radius:22px;padding:12px;box-shadow:0 8px 26px rgba(0,0,0,.06);color:var(--brand-1)}
+  .insight-media{border-radius:18px;height:200px;background:#eef3fa center/cover no-repeat}
+  .insight-meta{font-size:12px;opacity:.7;margin-top:8px}
+  .insight-title{font-weight:800;margin:6px 0 10px}
+  .learn{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--brand-1);text-decoration:none}
+  .learn:hover{text-decoration:underline}
+
+  /* Contacto */
+  .contact-wrap{display:grid;grid-template-columns:1fr;gap:22px}
+  form{background:#16284a;color:var(--ink);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:20px}
+  label{display:block;font-size:14px;margin:12px 0 6px;color:var(--brand-2)}
+  input,textarea{width:100%;background:#ffffff;color:#223457;border:1px solid #e6eef7;border-radius:12px;padding:12px 14px;font:inherit}
+  input::placeholder,textarea::placeholder{color:#6b7f99}
+  input:focus,textarea:focus{outline:3px solid rgba(161,169,180,.35);border-color:#bcd6e8}
+  textarea{min-height:120px;resize:vertical}
+  .contact-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer}
+  .btn-primary{background:var(--brand-3);color:var(--brand-1);border:0}
+  .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+
+  /* Footer */
+  footer{background:var(--brand-1);color:var(--ink-2);padding:36px 0;border-top:1px solid rgba(255,255,255,.08)}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .foot .mini{display:flex;align-items:center;gap:10px}
+  .foot a{color:#fff;text-decoration:none}
+</style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="nav container">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false" title="Menú">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a class="brand" href="#inicio" aria-label="OMEGA Solutions">
+          <img src="OMEGA Header.png" alt="OMEGA Solutions" />
+        </a>
+      </div>
+
+      <div class="top-actions">
+        <div class="lang" id="lang">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false" aria-haspopup="true">
+            <img src="icon-languages-2.svg" alt="" aria-hidden="true">
+            <span id="lang-label">ES</span>
+          </button>
+          <div class="lang-menu" id="lang-menu" role="menu" aria-label="Language menu"></div>
+        </div>
+        <a class="cta-nav" href="#contacto" data-i18n="ctaContact">Contáctanos</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- DRAWER -->
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <strong data-i18n="menuTitle">Menú</strong>
+      <button class="drawer-close" id="drawer-close" aria-label="Cerrar menú">×</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="#inicio" data-i18n="navHome">Inicio</a>
+      <a href="#que-hacemos" data-i18n="navWhat">Qué hacemos</a>
+      <a href="#vision-mision" data-i18n="navVision">Visión & Misión</a>
+      <a href="#kpis" data-i18n="navKpis">KPIs</a>
+      <a href="#insights" data-i18n="navInsights">Insights</a>
+      <a href="#contacto" data-i18n="navContact">Contáctanos</a>
+    </nav>
+    <div class="drawer-social">
+      <div style="font-weight:700">Síguenos</div>
+      <div class="row">
+        <a class="icon" href="https://www.instagram.com/omegasolutions.sv" target="_blank" rel="noopener" aria-label="Instagram">
+          <!-- IG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="icon" href="https://www.linkedin.com/company/omega-solutions-sv" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <!-- IN -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.7v2.2h.07c.65-1.23 2.24-2.52 4.61-2.52C21.82 7.68 24 9.7 24 13.37V24h-5v-9.2c0-2.2-.79-3.7-2.77-3.7-1.51 0-2.41 1.02-2.81 2.01-.14.34-.18.81-.18 1.29V24H8V8z"/></svg>
+        </a>
+        <a class="icon" href="https://www.facebook.com/omegasolutions.sv" target="_blank" rel="noopener" aria-label="Facebook">
+          <!-- FB -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.4V12h2.4V9.8c0-2.4 1.43-3.7 3.62-3.7 1.05 0 2.14.19 2.14.19v2.36h-1.2c-1.18 0-1.55.74-1.55 1.5V12h2.64l-.42 2.9h-2.22v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+      </div>
+      <a class="phone" href="tel:+50372076611" aria-label="Llamar a OMEGA Solutions">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92V21a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 12.8 19.79 19.79 0 0 1 0 4.18 2 2 0 0 1 2 2h4.09a2 2 0 0 1 2 1.72c.12.9.3 1.78.54 2.64a2 2 0 0 1-.45 1.95L7 9a16 16 0 0 0 8 8l.69-1.13a2 2 0 0 1 1.95-.45c.86.24 1.74.42 2.64.54A2 2 0 0 1 22 16.92z"/></svg>
+        +503 7207 6611
+      </a>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1 data-i18n="heroTitle">Soluciones de software <span class="accent">a tu medida</span> para crecer sin fricción.</h1>
+        <p class="lead" data-i18n="heroSub">Desarrollamos apps, web y sistemas que modernizan tu operación con nube, SaaS e IA. Más eficiencia. Más control. <b>Más crecimiento</b>.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contacto" data-i18n="ctaBook">Hablemos hoy</a>
+          <a class="btn btn-secondary" href="#que-hacemos" data-i18n="ctaDiscover">Descubrir soluciones</a>
+        </div>
+        <div class="statbar">
+          <span class="pill" data-i18n="pillSaas">Cloud & SaaS -</span>
+          <span class="pill" data-i18n="pillIa">IA y Automatización -</span>
+          <span class="pill" data-i18n="pillCustom">100% a medida -</span>
+        </div>
+      </div>
+      <!-- Hero sin tarjeta secundaria (lo solicitado) -->
+      <div></div>
+    </div>
+  </section>
+
+  <!-- QUÉ HACEMOS -->
+  <section id="que-hacemos">
+    <div class="container">
+      <h2 class="section-title" data-i18n="whatTitle">Qué hacemos</h2>
+      <p class="section-sub" data-i18n="whatSub">Creamos plataformas y productos digitales listos para el futuro.</p>
+      <div class="grid-3">
+        <div class="card"><h4 data-i18n="what1">Software a medida</h4><p data-i18n="what1d">Backend/Frontend, APIs, microservicios y devops con buenas prácticas.</p></div>
+        <div class="card"><h4 data-i18n="what2">SaaS & Nube</h4><p data-i18n="what2d">Arquitecturas escalables (AWS/Azure/GCP), seguridad y observabilidad.</p></div>
+        <div class="card"><h4 data-i18n="what3">IA & Automatización</h4><p data-i18n="what3d">RPA, asistentes, clasificación y predicción con datos reales.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIÓN / MISIÓN -->
+  <section id="vision-mision">
+    <div class="container">
+      <h2 class="section-title" data-i18n="vmTitle">Visión & Misión</h2>
+      <div class="grid-2">
+        <div class="card"><h4 data-i18n="vision">Visión</h4><p data-i18n="visionD">Ser aliados estratégicos de MIPYMES y empresas para digitalizar y escalar sus negocios con tecnología accesible y de calidad.</p></div>
+        <div class="card"><h4 data-i18n="mission">Misión</h4><p data-i18n="missionD">Diseñar software seguro, escalable y centrado en el negocio para habilitar decisiones basadas en datos y crecimiento sostenido.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section id="kpis">
+    <div class="container">
+      <h2 class="section-title" data-i18n="kpiTitle">KPIs</h2>
+      <div class="kpis">
+        <div class="kpi"><b>45+</b><span data-i18n="kpi1"> proyectos entregados</span></div>
+        <div class="kpi"><b>98%</b><span data-i18n="kpi2"> satisfacción de clientes</span></div>
+        <div class="kpi"><b>24/7</b><span data-i18n="kpi3"> soporte técnico</span></div>
+        <div class="kpi"><b>60%</b><span data-i18n="kpi4"> eficiencia promedio lograda</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS (CLARO) -->
+  <section id="insights" class="light-section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="insTitle">Featured Insights</h2>
+      <p class="section-sub" data-i18n="insSub">Guías y recursos para impulsar tu transformación digital.</p>
+      <div class="insights">
+        <div>
+          <h3 class="section-title" style="font-size:22px" data-i18n="insLead">Liderazgo de pensamiento</h3>
+          <p class="section-sub" data-i18n="insLeadD">Investigación práctica para inspirar mejoras reales.</p>
+        </div>
+
+        <article class="insight-card">
+          <div class="insight-media" style="background-image:url('assets/photos/insight-1.jpg')"></div>
+          <div class="insight-meta" data-i18n="insType1">Blog</div>
+          <div class="insight-title" data-i18n="ins1">Cómo la IA reduce tiempos muertos en despacho</div>
+          <a href="#" class="learn" data-i18n="learnMore">Learn more →</a>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-media" style="background-image:url('assets/photos/insight-2.jpg')"></div>
+          <div class="insight-meta" data-i18n="insType2">Case Study</div>
+          <div class="insight-title" data-i18n="ins2">TMS/ELD integration in 7 days: a practical guide</div>
+          <a href="#" class="learn" data-i18n="learnMore">Learn more →</a>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-media" style="background-image:url('assets/photos/insight-3.jpg')"></div>
+          <div class="insight-meta" data-i18n="insType3">Webinar</div>
+          <div class="insight-title" data-i18n="ins3">FMCSA checklist for peak seasons</div>
+          <a href="#" class="learn" data-i18n="learnMore">Learn more →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title" data-i18n="contactTitle">Contáctanos</h2>
+      <div class="contact-wrap">
+        <form id="contact" action="#" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo contacto — OMEGA Solutions" />
+          <label data-i18n="fName">Nombre y empresa</label>
+          <input name="name" data-i18n-placeholder="phName" placeholder="Jane Doe — ACME Logistics" required />
+          <label data-i18n="fEmail">Email</label>
+          <input type="email" name="email" data-i18n-placeholder="phEmail" placeholder="jane@acme.com" required />
+          <label data-i18n="fPhone">Teléfono / WhatsApp</label>
+          <input name="phone" data-i18n-placeholder="phPhone" placeholder="+503 7000 0000" />
+          <label data-i18n="fMsg">¿Qué necesitas?</label>
+          <textarea name="message" data-i18n-placeholder="phMsg" placeholder="App móvil, panel web administrativo, integración con ERP/CRM, automatizaciones con IA..."></textarea>
+          <div class="contact-actions" style="margin-top:12px;">
+            <button class="btn btn-primary" type="submit" data-i18n="fSend">Enviar</button>
+            <a class="btn btn-secondary" href="mailto:info@omegasolutions.dev">info@omegasolutions.dev</a>
+          </div>
+          <p class="section-sub" style="margin-top:10px;font-size:12px;" data-i18n="fLegal">Al enviar aceptas nuestra política de privacidad y el tratamiento de datos.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot">
+      <div class="mini">
+        <img src="OMEGA.svg" alt="OMEGA" style="height:22px;">
+        <span><span id="y"></span> OMEGA Solutions</span>
+      </div>
+      <div class="mini">
+        <a href="#inicio" data-i18n="navHome">Inicio</a>
+        <a href="#contacto" style="margin-left:12px;" data-i18n="navContact">Contáctanos</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // Año footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Drawer
+  const drawer   = document.getElementById('drawer');
+  const backdrop = document.getElementById('drawer-backdrop');
+  const burger   = document.getElementById('hamburger');
+  const closer   = document.getElementById('drawer-close');
+  function openDrawer(){drawer.classList.add('open');backdrop.classList.add('open');drawer.setAttribute('aria-hidden','false');burger.setAttribute('aria-expanded','true');burger.setAttribute('aria-label','Cerrar menú')}
+  function closeDrawer(){drawer.classList.remove('open');backdrop.classList.remove('open');drawer.setAttribute('aria-hidden','true');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Abrir menú')}
+  function toggleDrawer(){drawer.classList.contains('open')?closeDrawer():openDrawer()}
+  burger?.addEventListener('click', toggleDrawer);
+  burger?.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleDrawer(); } });
+  closer?.addEventListener('click', closeDrawer);
+  backdrop?.addEventListener('click', closeDrawer);
+  window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer(); });
+  // Cerrar al seleccionar opción
+  document.querySelectorAll('.drawer-nav a').forEach(a=>a.addEventListener('click', closeDrawer));
+
+  // i18n
+  const I18N={
+    es:{menuTitle:"Menú",navHome:"Inicio",navWhat:"Qué hacemos",navVision:"Visión & Misión",navKpis:"KPIs",navInsights:"Insights",navContact:"Contáctanos",ctaContact:"Contáctanos",heroTitle:"Soluciones de software <span class='accent'>a tu medida</span> para crecer sin fricción.",heroSub:"Desarrollamos apps, web y sistemas que modernizan tu operación con nube, SaaS e IA. Más eficiencia. Más control. <b>Más crecimiento</b>.",ctaBook:"Hablemos hoy",ctaDiscover:"Descubrir soluciones",pillSaas:"Cloud & SaaS",pillIa:"IA y Automatización",pillCustom:"100% a medida",whatTitle:"Qué hacemos",whatSub:"Creamos plataformas y productos digitales listos para el futuro.",what1:"Software a medida",what1d:"Backend/Frontend, APIs, microservicios y devops con buenas prácticas.",what2:"SaaS & Nube",what2d:"Arquitecturas escalables (AWS/Azure/GCP), seguridad y observabilidad.",what3:"IA & Automatización",what3d:"RPA, asistentes, clasificación y predicción con datos reales.",vmTitle:"Visión & Misión",vision:"Visión",mission:"Misión",visionD:"Ser aliados estratégicos de MIPYMES y empresas para digitalizar y escalar sus negocios con tecnología accesible y de calidad.",missionD:"Diseñar software seguro, escalable y centrado en el negocio para habilitar decisiones basadas en datos y crecimiento sostenido.",kpiTitle:"KPIs",kpi1:" proyectos entregados",kpi2:" satisfacción de clientes",kpi3:" soporte técnico",kpi4:" eficiencia promedio lograda",insTitle:"Artículos destacados",insSub:"Guías y recursos para impulsar tu transformación digital.",insLead:"Liderazgo de pensamiento",insLeadD:"Investigación práctica para inspirar mejoras reales.",insType1:"Blog",insType2:"Case Study",insType3:"Webinar",ins1:"Cómo la IA reduce tiempos muertos en despacho",ins2:"TMS/ELD integration in 7 days: a practical guide",ins3:"FMCSA checklist for peak seasons",learnMore:"Learn more →",contactTitle:"Contáctanos",fName:"Nombre y empresa",fEmail:"Email",fPhone:"Teléfono / WhatsApp",fMsg:"¿Qué necesitas?",phName:"Jane Doe — ACME Logistics",phEmail:"jane@acme.com",phPhone:"+503 7000 0000",phMsg:"App móvil, panel web administrativo, integración con ERP/CRM, automatizaciones con IA...",fSend:"Enviar",fLegal:"Al enviar aceptas nuestra política de privacidad y el tratamiento de datos."},
+    en:{menuTitle:"Menu",navHome:"Home",navWhat:"What we do",navVision:"Vision & Mission",navKpis:"KPIs",navInsights:"Insights",navContact:"Contact",ctaContact:"Contact Us",heroTitle:"Custom software <span class='accent'>built for growth</span> without friction.",heroSub:"We build apps, web and systems powered by cloud, SaaS and AI. More efficiency. More control. <b>More growth</b>.",ctaBook:"Talk to us",ctaDiscover:"Discover solutions",pillSaas:"Cloud & SaaS",pillIa:"AI & Automation",pillCustom:"100% custom",whatTitle:"What we do",whatSub:"We build future-ready platforms and digital products.",what1:"Custom Software",what1d:"Backend/Frontend, APIs, microservices and devops best practices.",what2:"SaaS & Cloud",what2d:"Scalable architectures (AWS/Azure/GCP), security and observability.",what3:"AI & Automation",what3d:"RPA, assistants, classification and prediction with real data.",vmTitle:"Vision & Mission",vision:"Vision",mission:"Mission",visionD:"Be the strategic ally for SMEs and enterprises to digitize and scale with accessible, high-quality technology.",missionD:"Design secure, scalable, business-centric software to enable data-driven decisions and sustainable growth.",kpiTitle:"KPIs",kpi1:" projects delivered",kpi2:" client satisfaction",kpi3:" technical support",kpi4:" average efficiency achieved",insTitle:"Featured Insights",insSub:"Guides and resources to power your digital transformation.",insLead:"Thought leadership",insLeadD:"Practical research to inspire real improvements.",insType1:"Blog",insType2:"Case Study",insType3:"Webinar",ins1:"How AI reduces downtime in dispatch",ins2:"TMS/ELD integration in 7 days: a practical guide",ins3:"FMCSA checklist for peak seasons",learnMore:"Learn more →",contactTitle:"Contact Us",fName:"Name & Company",fEmail:"Email",fPhone:"Phone / WhatsApp",fMsg:"What do you need?",phName:"Jane Doe — ACME Logistics",phEmail:"jane@acme.com",phPhone:"+1 555 000 0000",phMsg:"Mobile app, admin web panel, ERP/CRM integration, AI automations...",fSend:"Send",fLegal:"By sending you accept our privacy policy and data processing."}
+  };
+
+  function applyI18N(lang){
+    const dict=I18N[lang]||I18N.es;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key=el.getAttribute('data-i18n');
+      if(dict[key]!==undefined){ /<.*>/.test(dict[key]) ? (el.innerHTML=dict[key]) : (el.textContent=dict[key]); }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+      const key=el.getAttribute('data-i18n-placeholder');
+      if(dict[key]!==undefined) el.setAttribute('placeholder',dict[key]);
+    });
+    try{localStorage.setItem('lang',lang);}catch(e){}
+    document.documentElement.setAttribute('lang',lang);
+  }
+
+  // Language ES/EN only
+  const langWrap   = document.getElementById('lang');
+  const langBtn    = document.getElementById('lang-btn');
+  const langMenu   = document.getElementById('lang-menu');
+  const langLabel  = document.getElementById('lang-label');
+  let currentLang  = 'es';
+  try{ const saved=localStorage.getItem('lang'); if(saved==='en'||saved==='es') currentLang=saved; }catch(e){}
+  function renderLangMenu(){
+    const items=[{code:'es', label:'ES'},{code:'en', label:'EN'}];
+    langMenu.innerHTML = items.filter(it=>it.code!==currentLang)
+                              .map(it=>`<button type="button" data-lang="${it.code}" role="menuitem">${it.label}</button>`).join('');
+    langLabel.textContent = (currentLang==='es') ? 'ES' : 'EN';
+  }
+  applyI18N(currentLang); renderLangMenu();
+  function openLang(){ langWrap.classList.add('open'); langBtn.setAttribute('aria-expanded','true'); }
+  function closeLang(){ langWrap.classList.remove('open'); langBtn.setAttribute('aria-expanded','false'); }
+  function toggleLang(){ langWrap.classList.contains('open') ? closeLang() : openLang(); }
+  langBtn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleLang(); });
+  document.addEventListener('click', (e)=>{ if(!langWrap.contains(e.target)) closeLang(); });
+  langMenu.addEventListener('click', (e)=>{
+    const btn=e.target.closest('button[data-lang]'); if(!btn) return;
+    currentLang = btn.getAttribute('data-lang');
+    applyI18N(currentLang); try{ localStorage.setItem('lang', currentLang); }catch(e){}
+    renderLangMenu(); closeLang();
+  });
+</script>
+</body>
+</html>
