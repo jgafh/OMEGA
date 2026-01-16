@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMMA Solutions | Software & Cloud Engineering</title>
+    <meta name="description" content="Desarrollo de software a medida, arquitectura Cloud e Inteligencia Artificial para empresas que buscan escalar sin fricción.">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" href="favicon.ico"> <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            /* Colores Base - Dark Tech Theme */
+            --bg-body: #0B0F19; /* Casi negro, azul muy profundo */
+            --bg-card: #141A26;
+            --bg-glass: rgba(20, 26, 38, 0.7);
+            
+            /* Acentos */
+            --primary: #3B82F6; /* Azul eléctrico */
+            --primary-glow: rgba(59, 130, 246, 0.4);
+            --secondary: #8B5CF6; /* Violeta para gradientes */
+            
+            /* Texto */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            
+            /* Dimensiones */
+            --max-w: 1200px;
+            --header-h: 80px;
+            --radius-lg: 24px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img, svg { display: block; max-width: 100%; }
+
+        /* --- UTILITIES --- */
+        .container { width: 90%; max-width: var(--max-w); margin: 0 auto; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .text-gradient {
+            background: linear-gradient(to right, #60A5FA, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
+        .btn-outline {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: var(--header-h);
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(11, 15, 25, 0.8);
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            height: 100%;
+        }
+        .logo { 
+            font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; 
+            display: flex; align-items: center; gap: 10px;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { 
+            font-size: 0.9rem; color: var(--text-muted); font-weight: 500; 
+        }
+        .nav-links a:hover { color: var(--text-main); }
+        
+        .header-actions { display: flex; gap: 1rem; align-items: center; }
+        
+        /* Language Toggle */
+        .lang-toggle {
+            background: transparent; border: none; color: var(--text-muted);
+            font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;
+        }
+        .lang-toggle:hover { color: var(--text-main); }
+
+        /* Mobile Menu Button */
+        .hamburger { display: none; cursor: pointer; color: var(--text-main); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: calc(var(--header-h) + 60px);
+            padding-bottom: 80px;
+            text-align: center;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        /* Efecto de luz detrás del Hero */
+        .hero::before {
+            content: ''; position: absolute; top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 80%; height: 500px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- BENTO GRID (SERVICIOS) --- */
+        .section-title {
+            text-align: center; margin-bottom: 3rem;
+        }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .section-title p { color: var(--text-muted); }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card:hover {
+            border-color: rgba(59,130,246,0.3);
+            transform: translateY(-5px);
+        }
+        .bento-icon {
+            width: 48px; height: 48px;
+            background: rgba(59,130,246,0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .bento-card h3 { margin-bottom: 0.75rem; font-size: 1.25rem; }
+        .bento-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Large Card override */
+        .span-2 { grid-column: span 2; }
+        @media(max-width: 768px) { .span-2 { grid-column: span 1; } }
+
+        /* --- STATS / KPIs --- */
+        .stats-section {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 4rem 0;
+            background: rgba(255,255,255,0.01);
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 2rem; text-align: center;
+        }
+        .stat-item h3 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 0.25rem; }
+        .stat-item p { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- CONTACT FORM --- */
+        .contact-section { padding: 5rem 0; }
+        .contact-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: center;
+        }
+        .contact-form {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted); }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            color: white;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary);
+        }
+        .form-group textarea { height: 120px; resize: none; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .footer-content {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* --- RESPONSIVE MOBILE NAV --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: var(--header-h); left: 0; width: 100%; height: 0;
+                background: var(--bg-body);
+                flex-direction: column; align-items: center; justify-content: center;
+                overflow: hidden; transition: 0.3s ease;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .nav-links.active { height: calc(100vh - var(--header-h)); }
+            .nav-links a { font-size: 1.25rem; }
+            .hamburger { display: block; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .header-actions { display: none; } /* Hide Desktop CTA on mobile menu closed, show inside menu if needed */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="12" height="12" rx="4" fill="#3B82F6"/>
+                    <rect x="18" y="2" width="12" height="12" rx="4" fill="#60A5FA" fill-opacity="0.5"/>
+                    <rect x="2" y="18" width="12" height="12" rx="4" fill="#60A5FA" fill-opacity="0.5"/>
+                    <rect x="18" y="18" width="12" height="12" rx="4" fill="#1E40AF"/>
+                </svg>
+                GAMMA
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#services" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="#about" data-i18n="nav_about">Nosotros</a></li>
+                    <li><a href="#kpis" data-i18n="nav_results">Resultados</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="lang-toggle" id="langToggle">
+                    <span id="currentLang">ES</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <a href="#contact" class="btn btn-primary" data-i18n="cta_header">Empezar</a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span style="display:inline-block; padding: 4px 12px; background: rgba(59,130,246,0.1); color:#60A5FA; border-radius: 20px; font-size: 0.85rem; font-weight:600; margin-bottom: 1rem; border:1px solid rgba(59,130,246,0.2);">
+                🚀 Ready for 2026
+            </span>
+            <h1 data-i18n="hero_title">Software a medida que impulsa tu <span class="text-gradient">crecimiento real</span>.</h1>
+            <p data-i18n="hero_sub">Ayudamos a MYPES y empresas a escalar operaciones, reducir errores y automatizar procesos con tecnología de clase mundial.</p>
+            <div class="flex-center" style="gap: 1rem; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary" data-i18n="hero_cta_1">Hablemos hoy</a>
+                <a href="#services" class="btn btn-outline" data-i18n="hero_cta_2">Ver soluciones</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <div class="section-title">
+            <h2 data-i18n="services_title">Nuestro Stack de Soluciones</h2>
+            <p data-i18n="services_sub">Diseñadas para eficiencia, escalabilidad y retorno de inversión.</p>
+        </div>
+        
+        <div class="bento-grid">
+            <div class="bento-card span-2">
+                <div class="bento-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                </div>
+                <h3 data-i18n="serv_1_title">Software a Medida</h3>
+                <p data-i18n="serv_1_desc">Desde plataformas SaaS complejas hasta apps internas. Desarrollamos backend robusto y frontend intuitivo que se adapta a tu flujo de trabajo, no al revés.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="bento-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 14a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/></svg>
+                </div>
+                <h3 data-i18n="serv_2_title">Automatización & IA</h3>
+                <p data-i18n="serv_2_desc">Implementamos agentes inteligentes para reducir tareas manuales, predecir demanda y eliminar errores humanos.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="bento-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3 data-i18n="serv_3_title">Facturación Electrónica</h3>
+                <p data-i18n="serv_3_desc">Cumplimiento total con DTE (El Salvador). Integración sin dolor con tus sistemas actuales de venta o ERP.</p>
+            </div>
+
+            <div class="bento-card span-2">
+                <div class="bento-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                </div>
+                <h3 data-i18n="serv_4_title">Infraestructura Cloud</h3>
+                <p data-i18n="serv_4_desc">Despliegue seguro en AWS, Google Cloud o Azure. Configuramos servidores que escalan automáticamente cuando tu negocio crece.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kpis" class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>45+</h3>
+                <p data-i18n="kpi_1">Proyectos Entregados</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p data-i18n="kpi_2">Clientes Felices</p>
+            </div>
+            <div class="stat-item">
+                <h3>60%</h3>
+                <p data-i18n="kpi_3">Eficiencia Operativa</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p data-i18n="kpi_4">Soporte Técnico</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section container">
+        <div class="contact-wrapper">
+            <div class="contact-text">
+                <h2 data-i18n="contact_title" style="font-size: 2.5rem; margin-bottom: 1rem;">¿Listo para escalar?</h2>
+                <p data-i18n="contact_desc" style="color: var(--text-muted); margin-bottom: 2rem;">Cuéntanos tu problema operativo. Nosotros diseñamos la solución técnica. Sin humo, solo resultados.</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="flex-center" style="justify-content: flex-start; gap: 10px;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>+503 7207 6611</span>
+                    </div>
+                    <div class="flex-center" style="justify-content: flex-start; gap: 10px;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span>contacto@gammasolutions.sv</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="mainForm" action="https://formspree.io/f/tu-id-aqui" method="POST">
+                <div class="form-group">
+                    <label data-i18n="form_name">Nombre completo</label>
+                    <input type="text" name="name" placeholder="Ej. Guillermo Figueroa" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="form_email">Correo corporativo</label>
+                    <input type="email" name="email" placeholder="ejemplo@empresa.com" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="form_msg">¿Cómo podemos ayudarte?</label>
+                    <textarea name="message" placeholder="Describe brevemente tu proyecto o dolor actual..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-i18n="form_btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <strong style="color:white;">GAMMA Solutions</strong>
+                <p style="font-size: 0.8rem; margin-top: 5px;">© 2026 Soluciones Omega SAS de CV.</p>
+            </div>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Traducciones (ES/EN) ---
+        const translations = {
+            es: {
+                nav_services: "Servicios", nav_about: "Nosotros", nav_results: "Resultados", nav_contact: "Contacto", cta_header: "Empezar",
+                hero_title: "Software a medida que impulsa tu <span class='text-gradient'>crecimiento real</span>.",
+                hero_sub: "Ayudamos a MYPES y empresas a escalar operaciones, reducir errores y automatizar procesos con tecnología de clase mundial.",
+                hero_cta_1: "Hablemos hoy", hero_cta_2: "Ver soluciones",
+                services_title: "Nuestro Stack de Soluciones", services_sub: "Diseñadas para eficiencia, escalabilidad y retorno de inversión.",
+                serv_1_title: "Software a Medida", serv_1_desc: "Backend robusto y frontend intuitivo que se adapta a tu flujo de trabajo.",
+                serv_2_title: "Automatización & IA", serv_2_desc: "Agentes inteligentes para reducir tareas manuales y eliminar errores.",
+                serv_3_title: "Facturación Electrónica", serv_3_desc: "Cumplimiento DTE El Salvador e integración simple con ERPs.",
+                serv_4_title: "Infraestructura Cloud", serv_4_desc: "Despliegue seguro en AWS/Google Cloud que escala con tu negocio.",
+                kpi_1: "Proyectos Entregados", kpi_2: "Clientes Felices", kpi_3: "Eficiencia Operativa", kpi_4: "Soporte Técnico",
+                contact_title: "¿Listo para escalar?", contact_desc: "Cuéntanos tu problema operativo. Nosotros diseñamos la solución.",
+                form_name: "Nombre completo", form_email: "Correo corporativo", form_msg: "¿Cómo podemos ayudarte?", form_btn: "Enviar Mensaje"
+            },
+            en: {
+                nav_services: "Services", nav_about: "About", nav_results: "Results", nav_contact: "Contact", cta_header: "Start Now",
+                hero_title: "Custom software that drives <span class='text-gradient'>real growth</span>.",
+                hero_sub: "We help SMEs and enterprises scale operations, reduce errors, and automate processes with world-class technology.",
+                hero_cta_1: "Let's Talk", hero_cta_2: "View Solutions",
+                services_title: "Our Solution Stack", services_sub: "Designed for efficiency, scalability, and ROI.",
+                serv_1_title: "Custom Software", serv_1_desc: "Robust backend and intuitive frontend that adapts to your workflow.",
+                serv_2_title: "Automation & AI", serv_2_desc: "Intelligent agents to reduce manual tasks and eliminate errors.",
+                serv_3_title: "E-Invoicing", serv_3_desc: "Full DTE El Salvador compliance and painless ERP integration.",
+                serv_4_title: "Cloud Infrastructure", serv_4_desc: "Secure deployment on AWS/Google Cloud that scales with your business.",
+                kpi_1: "Projects Delivered", kpi_2: "Happy Clients", kpi_3: "Operational Efficiency", kpi_4: "Tech Support",
+                contact_title: "Ready to scale?", contact_desc: "Tell us your operational pain. We engineer the solution.",
+                form_name: "Full Name", form_email: "Work Email", form_msg: "How can we help?", form_btn: "Send Message"
+            }
+        };
+
+        let currentLang = 'es';
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('currentLang');
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            langLabel.textContent = currentLang.toUpperCase();
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        // --- 2. Mobile Menu Logic ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- 3. Form Handling (Demo) ---
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            // Remove this preventDefault if you connect real Formspree/Netlify
+            e.preventDefault(); 
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Enviado 🚀";
+            btn.style.background = "#10B981"; // Green success
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "";
+                this.reset();
+            }, 3000);
+        });
+
+    </script>
+</body>
+</html>
