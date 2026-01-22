@@ -1,66 +1,46 @@
-# 🧠 Omega Solutions — Website Project
+# 🚀 GAMMA Solutions - Corporate Landing Page
 
-## 🌍 Descripción  
-Sitio web oficial de **Omega Solutions**, empresa salvadoreña dedicada al desarrollo de software a medida, soluciones en la nube y automatización inteligente.  
-El objetivo del sitio es reflejar la identidad tecnológica de la marca, mostrar sus servicios principales y generar leads a través de formularios de contacto.
+> Una Landing Page moderna y de alto rendimiento diseñada para una agencia de desarrollo de software (SaaS), enfocada en la conversión, la estética "Dark Mode" y la experiencia de usuario fluida.
 
----
+![Project Status](https://img.shields.io/badge/Status-Completed-success)
+![Tech Stack](https://img.shields.io/badge/Stack-HTML%20%7C%20Tailwind%20%7C%20JS-blue)
 
-## 🧩 Estructura actual del proyecto  
+## 📋 Descripción
 
-| Sección | Estado | Descripción |
-|----------|---------|-------------|
-| **Home / Hero Section** | ✅ Completo | Incluye logo SVG, fondo tipo data center con efecto neón, y mensaje bilingüe (ES/EN). |
-| **Servicios** | ✅ Completo | Describe los planes (Básico, Pro, Premium) con precios mensuales y anuales. |
-| **Sobre Nosotros** | ✅ Completo | Breve descripción de la empresa y su enfoque tecnológico. |
-| **Proyectos / Portfolio** | 🔄 En progreso | Espacio para mostrar screenshots y descripciones de proyectos realizados. |
-| **Artículos Destacados / Blog** | 🚧 Pendiente | Sección planificada para publicar artículos técnicos y casos de éxito. |
-| **Formulario de Contacto** | 🚧 Pendiente | En desarrollo. Permitirá contacto directo vía email o WhatsApp API. |
-| **Integración con Redes Sociales** | 🚧 Pendiente | Faltan enlaces a Facebook, LinkedIn e Instagram. |
-| **KPIs / Panel de Métricas** | 🚧 Planificado | Se incluirá dashboard visual con métricas de rendimiento y tráfico web. |
+Este proyecto es una **Single Page Application (SPA)** estática construida con **HTML5** y **Tailwind CSS**. Implementa un diseño **Glassmorphism** sofisticado, totalmente responsivo y optimizado para dispositivos móviles.
 
----
+El sitio incluye funcionalidades avanzadas como cambio de idioma (ES/EN) en tiempo real, un formulario de contacto AJAX integrado con Formspree, y un carrusel de tecnologías infinito.
 
-## 🛠️ Stack Tecnológico  
+## ✨ Características Principales
 
-- **Frontend:** HTML5, CSS3 (Tailwind), JavaScript (modular)  
-- **Backend:** Node.js (Express) *(en planificación)*  
-- **Diseño:** Basado en la identidad visual de Omega (`#223457`, `#a1a9b4`, `#ffffff`)  
-- **Hosting:** GitHub Pages / Custom Domain  
-- **Automatización:** Integraciones futuras con Zapier o API interna  
+* **🎨 Diseño UI/UX Premium:** Estética "SaaS Dark" con efectos de desenfoque (Glassmorphism), degradados y animaciones sutiles.
+* **📱 Mobile-First:** Menú de navegación tipo "Overlay" completo para móviles y diseño adaptable.
+* **🌍 Internacionalización:** Sistema de traducción ligero (Vanilla JS) para cambiar entre Español e Inglés instantáneamente.
+* **📨 Formulario AJAX:** Integración con **Formspree** que permite enviar correos sin recargar la página, mostrando una confirmación de éxito animada.
+* **♾️ Marquee Infinito:** Carrusel de logotipos de tecnologías (SVG) con animación CSS continua.
+* **🔒 Privacidad:** Modal de política de privacidad integrado.
+* **⚡ Performance:** Uso de Tailwind vía CDN para prototipado rápido y carga veloz.
 
----
+## 🛠️ Tecnologías
 
-## 📈 Próximas mejoras  
+* **Core:** HTML5 Semántico.
+* **Estilos:** Tailwind CSS (vía CDN script).
+* **Scripting:** Vanilla JavaScript (ES6+).
+* **Iconos:** Google Material Symbols & SVGs personalizados.
+* **Fuentes:** Work Sans (Google Fonts).
 
-- Agregar **modo oscuro automático**  
-- Añadir **formulario funcional con validación**  
-- Integrar **reCAPTCHA** para el formulario de contacto  
-- Crear **página “Blog / Insights”**  
-- Incorporar **SEO básico** (metatags, sitemap, OG tags)  
-- Conectar con **Google Analytics / KPIs**
+## 📂 Estructura del Proyecto
 
----
-
-## 👥 Contribuciones  
-
-¿Quieres contribuir al desarrollo o diseño del sitio?  
-
-1. Haz un **fork** del repositorio.  
-2. Crea tu rama (`feature/nueva-seccion`).  
-3. Envía un **pull request** detallando los cambios.  
-
----
-
-## 📫 Contacto  
-
-📧 contacto@omegasolutions.dev  *(pendiente)*  
-🌐 [omegasolutions.sv](https://omegasolutions.sv)  *(pendiente)*  
-📱 WhatsApp: [wa.me/50372076611](https://wa.me/50372076611)  
-📎 LinkedIn: *(pendiente)*  
-📎 Facebook: *(pendiente)*  
-📎 Instagram: @omegasolutions.sv
-
----
-
-© 2025 Omega Solutions. Todos los derechos reservados.
+```text
+/
+├── index.html          # Archivo principal con todo el código
+├── GS logo1.svg        # Logotipo principal de GAMMA Solutions
+├── aws.svg             # Icono tecnología
+├── azure.svg           # Icono tecnología
+├── google-cloud.svg    # Icono tecnología
+├── react.svg           # Icono tecnología
+├── python.svg          # Icono tecnología
+├── docker.svg          # Icono tecnología
+├── openai.svg          # Icono tecnología
+├── gemini.svg          # Icono tecnología
+└── README.md           # Documentación
